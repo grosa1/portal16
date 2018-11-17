@@ -56,6 +56,29 @@ require('moment/locale/de-ch');
 require('moment/locale/ko');
 require('moment/locale/ar-sa');
 
+var react2angular = require('react2angular');
+// var React = require('react');
+var MyComponent = require('../../../../shared/src/deleteme2').default;
+
+// class MyComponent extends React.Component {
+//   render() {
+//     return (
+//         <section className="horizontal-stripe article-header white-background">
+//             <div className="container--desktop">
+//                 <div className="row">
+//                     <header className="col-xs-12 text-center">
+//                         <nav className="article-header__category article-header__category--deep">
+//                             <span className="article-header__category__upper"><a href="/occurrence/search">occurrence</a></span>
+//                         </nav> 
+//                         <div className="h4 article-header__highlights">Headline {this.props.bazZer}</div> 
+//                     </header>
+//                 </div>
+//             </div>
+//         </section>
+//     )
+//   }
+// }
+
 (function() {
     'use strict';
     angular
@@ -79,7 +102,8 @@ require('moment/locale/ar-sa');
             'angular-svg-round-progressbar',
             'toastr',
             'ngFileUpload'
-        ]);
+        ])
+        .component('myComponent', react2angular.react2angular(MyComponent, ['bazZer']));
 })();
 
 

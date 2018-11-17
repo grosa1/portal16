@@ -1,0 +1,9 @@
+{% extends "../shared/layout/html/html.nunjucks" %}
+
+{% block styles %}
+  {$  style | safe $}
+{% endblock %}
+
+{% block page %}
+  {$  content | safe $}
+{% endblock %}

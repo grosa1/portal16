@@ -26,7 +26,7 @@ gulp.task('lint', ['client-lint'], function() {
 });
 
 gulp.task('server-lint', function() {
-    return gulp.src(config.js.server.paths.concat(['!**/*.spec.js']))
+    return gulp.src(config.js.server.paths.concat(['!**/*.spec.js', '!app/shared/**/*.*']))
         .pipe(g.eslint())
         .pipe(g.eslint.format()) // stdout
         .pipe(g.eslint.format('checkstyle', fs.createWriteStream('reports/checkstyle_server.xml')))

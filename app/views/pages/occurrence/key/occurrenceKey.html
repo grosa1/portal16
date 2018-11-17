@@ -2,6 +2,7 @@
     <div class="site-content__page">
         <div class="publisherKey light-background">
             <article class="wrapper-horizontal-stripes occurrenceKey page--data">
+            <my-component baz-zer="'Somehere'"></my-component>
                 <ng-include src="'/api/template/occurrence/' + occurrenceKey.key + '?v=' + portal.BUILD_VERSION +'&locale=' + occurrenceKey.gb.locale"></ng-include>
             </article>
         </div>

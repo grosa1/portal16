@@ -97,12 +97,13 @@ config.bootstrap = {
  */
 config.js = {
     server: {
-        paths: [loc('app/**/*.js'), loc('app.js'), loc('config/**/*.js'), '!' + loc('app/views/**/*.js'), '!' + loc('app/assets/**/*.*'), '!public/**', '!node_modules/**', '!bower_components/**'],
+        watch: [loc('app/**/*.js'), loc('app.js'), loc('config/**/*.js'), '!' + loc('app/views/**/*.js'), '!' + loc('app/assets/**/*.*'), '!public/**', '!node_modules/**', '!bower_components/**'],
+        paths: [loc('app/**/*.js'), loc('app.js'), loc('config/**/*.js'), '!' + loc('app/views/**/*.js'), '!' + loc('app/shared/src/**/*.js'), '!' + loc('app/assets/**/*.*'), '!public/**', '!node_modules/**', '!bower_components/**'],
         testPaths: [loc('app.spec.js'), loc('app/**/*.spec.js'), '!' + loc('app/views/**/*.spec.js')]
     },
     client: {
-        paths: [loc('app/views/**/*.js'), '!' + loc('app/views/**/*.spec.js')],
-        watch: [loc('app/views/**/*.js'), loc('app/views/**/*.json'), '!' + loc('app/views/**/*.spec.js')],
+        paths: [loc('app/views/**/*.js'), '!' + loc('app/views/**/*.spec.js'), loc('app/shared/**/*.js'), '!' + loc('app/shared/**/*.spec.js')],
+        watch: [loc('app/views/**/*.js'), loc('app/views/**/*.json'), '!' + loc('app/views/**/*.spec.js'), loc('app/shared/src/*.js'), '!' + loc('app/shared/**/*.spec.js')],
         testPaths: [loc('app/views/**/*.spec.js')]
     },
     gulp: {

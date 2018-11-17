@@ -11,6 +11,29 @@ module.exports = function(app) {
     app.use('/', router);
 };
 
+import MyComponent from '../../../shared/src/deleteme2'
+import React from 'react'
+import {renderToString} from 'react-dom/server'
+import { ServerStyleSheet } from 'styled-components'
+
+
+router.get('/occurrence/deleteme/:key(\\d+).:ext?', function(req, res, next) {
+    const sheet = new ServerStyleSheet()
+    let rendered = renderToString(sheet.collectStyles(
+        <React.Fragment>
+            <MyComponent bazZer={'hej fra serveren'}/>
+            <h1>something else </h1>
+        </React.Fragment>)
+        );
+    const styleTags = sheet.getStyleTags();
+    console.log(styleTags);
+    // res.send(rendered);
+    helper.renderPage(req, res, next, {
+        content: `<my-component baz-zer="'hej fra serveren'">${rendered}</my-component>`,
+        style: styleTags
+    }, 'pages/react');
+});
+
 router.get('/occurrence/:key(\\d+).:ext?', function(req, res, next) {
     let key = req.params.key;
     occurrenceKey.getOccurrenceModel(key, res.__).then(function(occurrence) {

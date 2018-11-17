@@ -10,9 +10,10 @@ let gulp = require('gulp'),
     config = rootRequire('config/build'),
     browserSync = require('browser-sync'),
     yargs = require('yargs').argv,
+    babel = require('gulp-babel'),
     g = require('gulp-load-plugins')();
 
-gulp.task('browser-sync', ['server'], function() {
+gulp.task('browser-sync', function() {
     console.log('Starting browser-synced site at http://localhost:' + config.browsersync.port);
     return browserSync.init(null, {
         proxy: 'http://localhost:' + serverConfig.port,
@@ -24,7 +25,16 @@ gulp.task('browser-sync', ['server'], function() {
     });
 });
 
-gulp.task('server', ['server-lint'], function(cb) {
+gulp.task('babel-shared', function() {
+    gulp.src('app/shared/src/**/*.js')
+        .pipe(babel({
+            presets: ['@babel/preset-env', '@babel/preset-react']
+        }))
+        .pipe(gulp.dest('app/shared/lib/'));
+});
+
+gulp.task('server', ['babel-shared', 'server-lint'], function(cb) {
+    console.log('STARTING NODEMON FROM GULP');
     let started = false;
     let args = [];
     ['loglevel', 'dataapi', 'tileapi', 'cmsapi', 'port', 'credentials', 'verification'].forEach(function(e) {
@@ -37,8 +47,8 @@ gulp.task('server', ['server-lint'], function(cb) {
             script: 'app.js',
             args: args,
             ext: 'js nunjucks',
-            ignore: ['app/views/'],
-            tasks: ['server-lint'],
+            ignore: ['app/views/', 'app/shared/lib/'],
+            tasks: ['babel-shared', 'server-lint'],
             watch: ['app.js', 'config/', 'app/'], // , 'app/views/**/*.nunjucks'
             env: {
                 'NODE_ENV': 'local'
