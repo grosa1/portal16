@@ -37,15 +37,14 @@
                             <li class="mainMenu--hasChild mainMenu__firstLevel"
                                 ng-class="{'mainMenu--childActive': nav.activeMenu == '{$ menuGroup.name $}'}">
                                 <a class=" mainMenu__parentItem" href=""
-                                   ng-click="nav.toggleMenu('{$ menuGroup.name $}')">{$ __('menu.' + menuGroup.name) $}</a>
+                                   ng-click="nav.toggleMenu('{$ menuGroup.name $}')">{$ menuGroup.name $}</a>
                                 <ul class="mainMenu__childGroup">
                                     <li class="mainMenu__columns">
                                         <nav><h2>{# NO SUB HEADER SINCE THERE IS ONLY ONE CHILD #}</h2>
                                             <ul class="mainMenu__childItem">
                                                 {% for item in menuGroup.items %}
                                                     <li>
-                                                        <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$
-                                                            __('menu.' + item.name) $}
+                                                        <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
                                                             {% if item.type == 'EXTERNAL' %}
                                                                 <span class="gb-icon-link"></span>
                                                             {% endif %}
@@ -62,17 +61,15 @@
                             <li class="mainMenu--hasChild mainMenu__firstLevel mainMenu--hasGrandChild"
                                 ng-class="{'mainMenu--childActive': nav.activeMenu == '{$ menuGroup.name $}'}">
                                 <a class=" mainMenu__parentItem" href=""
-                                   ng-click="nav.toggleMenu('{$ menuGroup.name $}')">{$ __('menu.' + menuGroup.name)
-                                    $}</a>
+                                   ng-click="nav.toggleMenu('{$ menuGroup.name $}')">{$ menuGroup.name $}</a>
                                 <ul class="mainMenu__childGroup">
                                     {% for category in menuGroup.items %}
                                         <li class="mainMenu__columns">
-                                            <nav><h2>{$ __('menu.' + category.name) $}</h2>
+                                            <nav><h2>{$ category.name $}</h2>
                                                 <ul class="mainMenu__childItem">
                                                     {% for item in category.items %}
                                                         <li {% if item.roles %} ng-if='nav.hasRole({$ item.roles | rawJson $})' {% endif %}>
-                                                            <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$
-                                                                __('menu.' + item.name) $}
+                                                            <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
                                                                 {% if item.type == 'EXTERNAL' %}
                                                                     <span class="gb-icon-link"></span>
                                                                 {% endif %}
