@@ -5,8 +5,7 @@ let esFallBackHomePage = require('./esFallBackHomePage.json');
 let resourceSearch = rootRequire('app/controllers/api/resource/search/resourceSearch');
 let fallbackMenu;
 
-function transformEsNavigationElements(homePage, navElements) {
-    let mainNavigationElements = homePage.mainNavigationElements;
+function transformEsNavigationElements(mainNavigationElements, navElements) {
     let navIdMap = _.keyBy(navElements.results, 'id');
     let menuBuild = [];
     mainNavigationElements.forEach(function(e) {
@@ -42,22 +41,22 @@ function buildElement(key, navIdMap) {
 try {
     fallbackMenu = transformEsNavigationElements(esFallBackHomePage, esFallbackNavigation);
 } catch (err) {
-  log.error(err);
+    log.error(err);
 }
 
 function getMenuOrFallback(home, nav) {
     try {
         return transformEsNavigationElements(home, nav);
     } catch (err) {
-				log.error(err);
+        log.error(err);
         return fallbackMenu;
     }
 }
 
 async function getMenu(locale, __) {
     let nav = await resourceSearch.search({contentType: 'navigationElement', limit: 200, locale: locale}, __, {requestTimeout: 2000});
-    let home = esFallBackHomePage; // await resourceSearch.search({contentType: 'homePage', limit: 200, locale: locale}, __, {requestTimeout: 2000});
-    return getMenuOrFallback(home, nav);
+    let home = await resourceSearch.search({contentType: 'homePage', limit: 200, locale: locale}, __, {requestTimeout: 2000});
+    return getMenuOrFallback(_.get(home, 'results[0].mainNavigationElements', []), nav);
 }
 
 module.exports = {
