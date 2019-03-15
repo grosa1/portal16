@@ -16,7 +16,7 @@ function transformEsNavigationElements(mainNavigationElements, navElements) {
 
 function buildElement(key, navIdMap) {
     let navEl = navIdMap[key];
-    let item = {name: navEl.title};
+    let item = {name: navEl.title, externalLink: !!navEl.externalLink};
     if (navEl.link) {
         item.url = navEl.link;
     } else if (navEl.childNavigationElements) {

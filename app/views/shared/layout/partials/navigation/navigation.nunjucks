@@ -44,8 +44,8 @@
                                             <ul class="mainMenu__childItem">
                                                 {% for item in menuGroup.items %}
                                                     <li>
-                                                        <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
-                                                            {% if item.type == 'EXTERNAL' %}
+                                                        <a href="{% if not item.externalLink %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
+                                                            {% if item.externalLink %}
                                                                 <span class="gb-icon-link"></span>
                                                             {% endif %}
                                                         </a>
@@ -69,8 +69,8 @@
                                                 <ul class="mainMenu__childItem">
                                                     {% for item in category.items %}
                                                         <li {% if item.roles %} ng-if='nav.hasRole({$ item.roles | rawJson $})' {% endif %}>
-                                                            <a href="{% if item.type != 'EXTERNAL' %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
-                                                                {% if item.type == 'EXTERNAL' %}
+                                                            <a href="{% if not item.externalLink %}{$ gb.locales.urlPrefix $}{% endif %}{$ item.url $}">{$ item.name $}
+                                                                {% if item.externalLink %}
                                                                     <span class="gb-icon-link"></span>
                                                                 {% endif %}
                                                             </a>
