@@ -9,20 +9,18 @@ let menus = {};
 async function getMenuData(locale, __) {
     // if cached version ready, then use that
     let cachedMenu = menus[locale];
-    if (cachedMenu) {
-        return cachedMenu;
-    }
-    return getMenu(locale, __)
+    let menuPromise = getMenu(locale, __)
         .then(function(dynamicMenu) {
             menus[locale] = dynamicMenu;
-            if (!cachedMenu) {
-                return dynamicMenu;
-            }
+            return dynamicMenu;
         }).catch(function() {
-            if (!cachedMenu) {
-                return fallbackMenu;
-            }
+            return fallbackMenu;
         });
+    if (cachedMenu) {
+        return cachedMenu;
+    } else {
+        return menuPromise;
+    }
 }
 
 function use(app) {

@@ -39,7 +39,7 @@ function buildElement(key, navIdMap) {
 }
 
 try {
-    fallbackMenu = transformEsNavigationElements(esFallBackHomePage, esFallbackNavigation);
+    fallbackMenu = transformEsNavigationElements(esFallBackHomePage.mainNavigationElements, esFallbackNavigation);
 } catch (err) {
     log.error(err);
 }
