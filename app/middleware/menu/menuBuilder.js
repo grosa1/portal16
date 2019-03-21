@@ -16,7 +16,11 @@ function transformEsNavigationElements(mainNavigationElements, navElements) {
 
 function buildElement(key, navIdMap) {
     let navEl = navIdMap[key];
-    let item = {name: navEl.title, externalLink: !!navEl.externalLink};
+    let item = {
+        name: navEl.title,
+        externalLink: !!navEl.externalLink,
+        roles: navEl.roles
+    };
     if (navEl.link) {
         item.url = navEl.link;
     } else if (navEl.childNavigationElements) {
@@ -39,7 +43,7 @@ function buildElement(key, navIdMap) {
 }
 
 try {
-    fallbackMenu = transformEsNavigationElements(esFallBackHomePage.mainNavigationElements, esFallbackNavigation);
+    fallbackMenu = transformEsNavigationElements(esFallBackHomePage.results[0].mainNavigationElements, esFallbackNavigation);
 } catch (err) {
     log.error(err);
 }
