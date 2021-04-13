@@ -77,6 +77,9 @@ router.get('/api/resource/content/:type', function(req, res, next) {
         case 'network':
             template = 'pages/network/key/prose';
             break;
+        case 'features':
+            template = 'pages/resource/blocks/features';
+            break;
         default:
             template = 'pages/resource/key/article/articleContent';
     }
