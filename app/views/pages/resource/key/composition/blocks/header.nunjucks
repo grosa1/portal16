@@ -1,0 +1,9 @@
+<div class="horizontal-stripe article-header white-background">
+  <header class="text-center">
+    <h1 dir="auto">{$ main.fields.title $}</h1>
+    <div class="article-header__intro" dir="auto">
+        {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+    </div>
+  </header>
+</div>
+{% include "../../primaryImage.nunjucks" %}
