@@ -4,13 +4,13 @@
           {% set main = resolved.Entry[blockId.sys.id] %}
           {% set type = resolved.Entry[blockId.sys.id].sys.contentType.sys.id %}
           
-          {# {% if type == "headerBlock" %}
+          {% if type == "headerBlock" %}
             {% include "./blocks/header.nunjucks" %}
           {% endif %}
 
           {% if type == "textBlock" %}
             {% include "./blocks/text.nunjucks" %}
-          {% endif %} #}
+          {% endif %}
 
           {% if type == "featureBlock" %}
             {% include "./blocks/features.nunjucks" %}
