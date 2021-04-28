@@ -1,9 +1,11 @@
-<section class="horizontal-stripe light-background">
+<section class="horizontal-stripe light-background featuresBlockList">
+    {% if main.fields.title %}
     <div class="container--narrow text-center">
         <h2 style="margin-bottom: 3rem">{$ main.fields.title $}</h2>
     </div>
+    {% endif %}
     <div class="container--desktop">
-      <div class="featuresBlock">
+      <div class="featuresBlock featuresBlock-length-{$ main.fields.features.length $}">
           {% for featureId in main.fields.features %}
             {% set feature = resolved.Entry[featureId.sys.id] %}
             {% set featureType = resolved.Entry[featureId.sys.id].sys.contentType.sys.id %}
