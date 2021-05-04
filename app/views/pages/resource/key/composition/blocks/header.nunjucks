@@ -2,8 +2,8 @@
   <div class="article-header">
     <header class="text-center">
       <h1 dir="auto">{$ main.fields.title $}</h1>
-      <div class="article-header__intro" dir="auto">
-          {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+      <div class="article-header__intro m-b-2" dir="auto">
+          {$ main.fields.summary | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
       </div>
     </header>
   </div>
