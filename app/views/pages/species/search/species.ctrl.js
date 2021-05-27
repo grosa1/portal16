@@ -134,6 +134,14 @@ function speciesCtrl($scope, $state, SpeciesFilter, Species, $translate, Page, s
       }
     };
 
+    // ternary "all, yes, no" aka optional boolean
+    vm.filters.isExtinct = {
+      titleTranslation: 'filterNames.isExtinct',
+      descriptionTranslation: 'filters.isExtinct.description',
+      queryKey: 'is_extinct',
+      filter: SpeciesFilter
+    };
+
     // vm.filters.highertaxonKey = {
     //   titleTranslation: 'filterNames.higherTaxonKey',
     //   queryKey: 'highertaxon_key',

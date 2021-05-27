@@ -49,6 +49,8 @@
         <div filter-facet filter-config="species.filters.origin" filter-state="species.state"
              ng-if="species.state.query.advanced"></div>
 
+        <div filter-ternary filter-config="species.filters.isExtinct" filter-state="species.state"></div>
+
         <div class="site-drawer__comment" ng-if="!species.state.query.advanced">
             <div translate="speciesSearch.youAreCurrentlySearchingInGBIFtaxonomy"></div>
             <div class="p-t-05">
