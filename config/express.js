@@ -22,6 +22,8 @@ module.exports = function(app, config) {
             contentSecurityPolicy: {
                 directives: {
                     defaultSrc: [
+                        'maxcdn.bootstrapcdn.com',
+                        'cdn.jsdelivr.net/codemirror.spell-checker/',
                         `'self'`,
                         `*.gbif.org`,
                         `*.gbif-uat.org`,
@@ -56,9 +58,10 @@ module.exports = function(app, config) {
                         `'unsafe-inline'`,
                         '*.googleapis.com',
                         'cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.12.0/mapbox-gl.min.css',
-                        'api.mapbox.com'],
+                        'api.mapbox.com',
+                        'maxcdn.bootstrapcdn.com'],
                     mediaSrc: ['*'],
-                    imgSrc: ['*'],
+                    imgSrc: ['*', 'data:'],
                     workerSrc: [
                         'blob:'
                     ],
