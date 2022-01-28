@@ -61,22 +61,22 @@
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/dataset/search" class="inherit noUnderline">
                             <img src="/img/counts_mock.svg" />
-                            <h3 class="discreet">{$ __('homepage.counts.datasets') $}</h3>
                             <div count="{{ portal.dataApi }}dataset/search">40,000</div>
+                            <h3 class="discreet">{$ __('homepage.counts.datasets') $}</h3>
                         </a>
                     </article>
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/publisher/search" class="inherit noUnderline">
                             <img src="/img/counts_mock.svg" />
-                            <h3 class="discreet">{$ __('homepage.counts.publishers') $}</h3>
                             <div count="/api/publisher/count" >1,300</div>
+                            <h3 class="discreet">{$ __('homepage.counts.publishers') $}</h3>
                         </a>
                     </article>
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true" class="inherit noUnderline">
                             <img src="/img/counts_mock.svg" />
-                            <h3 class="discreet">{$ __('homepage.counts.literature') $}</h3>
                             <div count="/api/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true&limit=0">3,450</div>
+                            <h3 class="discreet">{$ __('homepage.counts.literature') $}</h3>
                         </a>
                     </article>
                 </div>
