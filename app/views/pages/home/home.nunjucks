@@ -48,34 +48,42 @@
             </div>
         </div>
 
-        <div class="horizontal-stripe light-background p-t-05">
+        <div class="horizontal-stripe white-background p-t-05">
             <div class="container--desktop">
                 <div class="home__counts">
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/occurrence/search?occurrence_status=PRESENT" class="inherit noUnderline">
-                            <h3 class="discreet">{$ __('homepage.counts.occurrences') $}</h3>
+                            <img src="/img/counts_mock.svg" />
                             <div count="{{ portal.dataApi }}occurrence/search?occurrence_status=PRESENT">1.000,000,000</div>
+                            <h3 class="discreet">{$ __('homepage.counts.occurrences') $}</h3>
                         </a>
                     </article>
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/dataset/search" class="inherit noUnderline">
+                            <img src="/img/counts_mock.svg" />
                             <h3 class="discreet">{$ __('homepage.counts.datasets') $}</h3>
                             <div count="{{ portal.dataApi }}dataset/search">40,000</div>
                         </a>
                     </article>
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/publisher/search" class="inherit noUnderline">
+                            <img src="/img/counts_mock.svg" />
                             <h3 class="discreet">{$ __('homepage.counts.publishers') $}</h3>
                             <div count="/api/publisher/count" >1,300</div>
                         </a>
                     </article>
                     <article class="article-box article-box--stats">
                         <a ng-href="{{ portal.urlPrefix }}/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true" class="inherit noUnderline">
+                            <img src="/img/counts_mock.svg" />
                             <h3 class="discreet">{$ __('homepage.counts.literature') $}</h3>
                             <div count="/api/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true&limit=0">3,450</div>
                         </a>
                     </article>
                 </div>
+            </div>
+        </div>
+        <div class="horizontal-stripe light-background p-t-05">
+            <div class="container--desktop">
 
                 {% if highlights | isNotEmpty %}
                     <div class="home__news">
