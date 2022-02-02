@@ -83,6 +83,29 @@
             </div>
         </div>
         <div class="horizontal-stripe light-background p-t-05">
+          <div class="container--desktop">
+            <div class="block_media">
+              <h2 class="block__header">What is GBIF?</h2>
+              <div class="block_media__content">
+                <div>
+                  <img src="/img/mundogbif2x@2x.png">
+                </div>
+                <div>
+                  <div class="block_media__textContent">
+                    <p>
+                      GBIF—the Global Biodiversity Information Facility— is an international network and data infrastructure funded by the world’s governments and aimed at providing anyone, anywhere, open access to data about all types of life on Earth.
+                    </p>
+                    <div class="block__actions">
+                      <span video-modal source="'https://player.vimeo.com/video/434713189?h=52e3fcab18'"><a href="" class="block__action">Watch a video</a></span>
+                      <a href="/what-is-gbif" class="block__action">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="horizontal-stripe bare-background">
             <div class="container--desktop">
 
                 {% if highlights | isNotEmpty %}
