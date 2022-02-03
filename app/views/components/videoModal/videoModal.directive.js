@@ -25,7 +25,6 @@ function videoModalDirective(BUILD_VERSION) {
   /** @ngInject */
   function videoModal($mdDialog) {
     var vm = this;
-    console.log(vm.source);
 
     vm.showPopup = function (ev) {
       $mdDialog.show({
