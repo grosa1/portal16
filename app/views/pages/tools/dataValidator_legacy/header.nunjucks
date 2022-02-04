@@ -16,11 +16,7 @@
                 <p class="source" ng-if="vm.jobid" translate="validation.reportProducedByGbifDataValidator">
                     Report produced by GBIF data validator
                 </p>
-                <p ng-class="{'m-t-1': (vm.$state.is('dataValidator') || vm.$state.is('dataValidatorAbout') )}"><span translate="validation.thisIsAnEarlyAccessVersion"></span> <a href="#" ng-click="vm.toggleFeedback()" translate="validation.here"></a>
-                <br/> 
-                <span translate="validation.needCSVvalidationUseOldValidator"></span> <a ui-sref="dataValidatorLegacy()" translate="validation.here"></a>
-                
-                </p>
+                <p ng-class="{'m-t-1': (vm.$state.is('dataValidatorLegacy') || vm.$state.is('dataValidatorLegacyAbout') )}">This is the <span style="background: tomato; color: white; border-radius: 2px; padding-left: 4px; padding-right: 4px; display: inline-block; text-align: center;" class="ng-scope">Legacy version</span> of the data validator. Please consider using the <a ui-sref="dataValidator()" >current version</a></p>
             </header>
         </div>
     </div>

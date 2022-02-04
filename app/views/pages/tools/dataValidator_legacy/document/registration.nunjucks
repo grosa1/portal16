@@ -1,0 +1,119 @@
+<section class="horizontal-stripe--paddingless dataset-key__contributors small">
+    <div>
+        <a href="" id="registration"></a>
+        <div class="anchor-block--tabs" id="registrationBlock">
+            <h4 translate="dataset.registration">Registration</h4>
+            <div>
+                <dl class="inline">
+                    <div ng-if="datasetKey.dataset.created">
+                        <dt>Registration date</dt>
+                        <dd>{{ datasetKey.dataset.created | momentFormat:'LL' }}</dd>
+                    </div>
+
+                    <div ng-if="datasetKey.dataset.modified">
+                        <dt>Last modification date</dt>
+                        <dd>{{ datasetKey.dataset.modified | momentFormat:'LL' }}</dd>
+                    </div>
+
+                    <div ng-if="datasetKey.dataset.pubDate">
+                        <dt>Publication date</dt>
+                        <dd>{{ datasetKey.dataset.pubDate | momentFormat:'LL' }}</dd>
+                    </div>
+
+                    <div ng-if="datasetKey.host.$resolved">
+                        <dt>Host</dt>
+                        <dd><a ng-href="{{portal.urlPrefix}}/publisher/{{ datasetKey.host.key }}">{{ datasetKey.host.title }}</a></dd>
+                    </div>
+
+                    <div ng-if="datasetKey.installation.$resolved">
+                        <dt>Installation</dt>
+                        <dd><a ng-href="{{portal.urlPrefix}}/installation/{{ datasetKey.installation.key }}">{{ datasetKey.installation.title }}</a></dd>
+                    </div>
+
+
+                    <div ng-if="datasetKey.installation.contacts.length > 0">
+                        <dt>Installation contacts</dt>
+                        <dd>
+                            <ul class="inline-bullet-list">
+                                <li ng-repeat="person in datasetKey.installation.contacts" ng-if="person.email[0]">
+                                    <a ng-href="mailto:{{ person.email[0] }}">
+                                        <span>{{ person.firstName }} {{ person.lastName }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+
+                    <div ng-if="datasetKey.dataset._endpoints.length > 0">
+                        <dt>Endpoints</dt>
+                        <dd>
+                            <ul class="inline-bullet-list">
+                                <li ng-repeat="endpoint in datasetKey.dataset._endpoints" ng-if="endpoint.url">
+                                    <a ng-href="{{ endpoint.url }}">
+                                        {{ endpoint.url }}
+                                    </a>
+                                    (<span class="small" translate="endpointType.{{ endpoint.type }}"></span>)
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+
+                    <div ng-if="datasetKey.dataset._identifiers.length > 0">
+                        <dt>Identifiers</dt>
+                        <dd>
+                            <ul class="inline-bullet-list">
+                                <li ng-repeat="identifier in datasetKey.dataset._identifiers">
+                                    <doi link="{{ identifier.identifier }}" ng-if="identifier.type == 'DOI' && (identifier.identifier | startsWith:'doi:')"></doi>
+                                    <a ng-href="{{ identifier.identifier }}" ng-if="identifier.type == 'DOI' && !(identifier.identifier | startsWith:'doi:')">
+                                        {{ identifier.identifier }}
+                                    </a>
+                                    <a ng-href="{{ identifier.identifier }}" ng-if="identifier.type == 'FTP' || identifier.type == 'LSID' || identifier.type == 'URL'">
+                                        {{ identifier.identifier }}
+                                    </a>
+                                    <span ng-if="identifier.type == 'UNKNOWN'">
+                                        {{ identifier.identifier }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+
+                    <div ng-if="datasetKey.processSummary.failuresSinceLastSuccess">
+                        <dt>Failed attempts since last successful ingestion</dt>
+                        <dd>{{ datasetKey.processSummary.failuresSinceLastSuccess }}</dd>
+                    </div>
+                    <div ng-if="datasetKey.processSummary.failuresSinceLastSuccess">
+                        <dt>Last failed attempt</dt>
+                        <dd>{{ datasetKey.processSummary.lastAttempt.startedCrawling | momentFormat:'LL' }}</dd>
+                    </div>
+                    <div ng-if="datasetKey.processSummary.lastSuccess">
+                        <dt>Last Successful ingestion</dt>
+                        <dd>{{ datasetKey.processSummary.lastSuccess.finishedCrawling | momentFormat:'LL' }}</dd>
+                    </div>
+                    <div ng-if="datasetKey.processSummary.finished > 0">
+                        <dt>Ingestion completion reasons</dt>
+                        <dd>
+                            <ul class="inline-bullet-list">
+                                <li ng-repeat="(key, value) in datasetKey.processSummary.stats">
+                                    {{ value/datasetKey.processSummary.finished | formatAsPercentage }}% {{ key | prettifyEnum }}
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+                    <div ng-if="datasetKey.processSummary.unfinished > 0">
+                        <dt>Unfinished ingestions</dt>
+                        <dd>{{ datasetKey.processSummary.unfinished }}</dd>
+                    </div>
+                    <div ng-if="datasetKey.processSummary.analyzedCount">
+                        <dt>Ingestions in total</dt>
+                        <dd>{{ datasetKey.processSummary.analyzedCount }}</dd>
+                    </div>
+                    {# TODO Is it worth menioning that there are no logged ingestion attempts #}
+                    {#<div ng-if="datasetKey.processSummary.finished == 0">#}
+                        {#<p class="discreet small">This dataset has no ingestion entries</p>#}
+                    {#</div>#}
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>

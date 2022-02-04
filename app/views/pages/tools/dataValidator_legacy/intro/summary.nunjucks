@@ -1,0 +1,155 @@
+<div class="container-fluid card">
+    <div class="row card__content" ng-if="vm.jobStatus ==='RUNNING' || vm.jobStatus ==='ACCEPTED' || vm.jobStatus ==='SUBMITTED' || vm.jobStatus ==='FETCHING' || vm.jobStatus ==='CONTACTING_SERVER'"
+    >
+        <div class="col-xs-12">
+
+        <div layout="row">
+        <span flex></span>
+        <div>
+            <h2 class="m-t-0" translate="validation.status.title"></h2>
+            <dl class="inline" ng-if="vm.jobId">
+
+                <div>
+                    <dt translate="validation.jobId"></dt>
+                    <dd >{{ vm.jobId }}
+
+                    </dd>
+                </div>
+                <div>
+                    <dt translate="validation.started">started</dt>
+                    <dd >{{ vm.startTimestamp }}
+
+                    </dd>
+                </div>
+            </dl>
+
+
+            <div layout="row"><span  translate="validation.status.{{ vm.jobStatus }}"></span> <span class="m-l-1"><md-progress-circular md-diameter="18px"></md-progress-circular></span> </div>
+        </div>
+            <span flex></span>
+        </div>
+    </div>
+</div>
+
+    <div class="row card__content" ng-if="vm.jobStatus==='FINISHED'">
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <div >
+                <h2 class="m-t-0" ng-if="vm.validationResults.summary.indexeable === true" >
+                <span class="issue-bullet__approved">●</span>
+
+                 <span  translate="validation.indexeable"></span>
+                </h2>
+                <h2  class="m-t-0" ng-if="vm.validationResults.summary.indexeable !== true" ><span class="issue-bullet__error">●</span> <span  translate="validation.notIndexeable"></span></h2>
+
+                <p ng-if="vm.validationResults.summary.hasIssues !== true" ><span class="issue-bullet__approved">●</span> <span  translate="validation.fileHasNoIssues"></span></p>
+                <span ng-if="vm.validationResults.summary.hasIssues === true">
+
+                    {#<table class="table dataValidator__summaryTable">#}
+
+                       {#<tbody>#}
+                       {#<tr >#}
+                           {#<td class="categoryTitle" ng-repeat="category in vm.validationResults.summary.issueTypesFoundSorted">{{ 'validation.category.'+category.key | translate }}</td>#}
+                            {#<td class="categoryTitle" ng-if="!vm.validationResults.summary.issueTypesFound.OCC_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Occurrence'">{{ 'validation.category.OCC_INTERPRETATION_BASED' | translate }}</td>#}
+                        {#<td class="categoryTitle" ng-if="!vm.validationResults.summary.issueTypesFound.CLB_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Taxon'">{{ 'validation.category.CLB_INTERPRETATION_BASED' | translate }}</td>#}
+                       {#</tr>#}
+                       {#<tr>#}
+                        {#<td ng-repeat="category in vm.validationResults.summary.issueTypesFoundSorted">#}
+                           {#<span ng-repeat="issue in category.issues" class="badge badge--{{issue.severity | lowercase }}">{{ (category.key === 'OCC_INTERPRETATION_BASED') ? "occurrenceIssue."+issue.id : (category.key === 'CLB_INTERPRETATION_BASED')?  "taxon.issueEnum."+issue.id : "validation.issueType."+issue.id | translate }}</span>#}
+
+                       {#</td>#}
+                       {#<td  ng-if="!vm.validationResults.summary.issueTypesFound.OCC_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Occurrence'"><span  class="badge badge--approved" translate="validation.issueType.NoIssuesFound"></span></td>#}
+                        {#<td  ng-if="!vm.validationResults.summary.issueTypesFound.CLB_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Taxon'"> <span  class="badge badge--approved" translate="validation.issueType.NoIssuesFound"></span></td>#}
+
+
+                       {#</tr>#}
+
+                       {#</tbody>#}
+                   {#</table>#}
+
+
+                   <h4 class="dataValidator__summaryTableTitle" translate="validation.fileHasIssues"></h4>
+
+                   <table class="table dataValidator__summaryTable">
+
+                       <tbody>
+                       <tr ng-repeat="category in vm.validationResults.summary.issueTypesFoundSorted">
+                           <td >{{ 'validation.category.'+category.key | translate }}</td>
+                       <td >
+                           <span ng-repeat="issue in category.issues" class="badge badge--{{issue.severity | lowercase }}">{{ (category.key === 'OCC_INTERPRETATION_BASED') ? "occurrenceIssue."+issue.id : (category.key === 'CLB_INTERPRETATION_BASED')?  "issueEnum."+issue.id : "validation.issueType."+issue.id | translate }}</span>
+
+                       </td>
+                       </tr>
+                       <tr ng-if="!vm.validationResults.summary.issueTypesFound.OCC_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Occurrence'">
+                           <td >{{ 'validation.category.OCC_INTERPRETATION_BASED' | translate }}</td>
+                       <td >
+                           <span  class="badge badge--approved" translate="validation.issueType.NoIssuesFound"></span>
+
+                       </td>
+                       </tr>
+                       <tr ng-if="!vm.validationResults.summary.issueTypesFound.CLB_INTERPRETATION_BASED && vm.coreDataType === 'http://rs.tdwg.org/dwc/terms/Taxon'">
+                           <td >{{ 'validation.category.CLB_INTERPRETATION_BASED' | translate }}</td>
+                       <td >
+                           <span  class="badge badge--approved" translate="validation.issueType.NoIssuesFound"></span>
+
+                       </td>
+                       </tr>
+
+                       </tbody>
+                   </table>
+
+
+                </span>
+            </div>
+
+
+        </div>
+        {#<div class="col-xs-12 col-sm-6 col-md-2">#}
+            {#<div class="pull-right">#}
+                {#<img ng-src="{{ datasetKey.images.results[0]._image.identifier | imgCache:200:150 }}">#}
+            {#</div>#}
+        {#</div>#}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+
+            <dl class="inline">
+                {#<div>#}
+                    {#<dt>Publisher</dt>#}
+                    {#<dd>#}
+                        {#<a ng-href="/publisher/{{ datasetKey.dataset.publishingOrganizationKey }}">#}
+                            {#{{ datasetKey.publisher.title }}#}
+                        {#</a>#}
+                    {#</dd>#}
+                {#</div>#}
+                <div>
+                    <dt translate="validation.fileFormat.title"></dt>
+                    <dd translate="validation.fileFormat.{{ vm.validationResults.summary.fileFormat }}">
+
+                    </dd>
+                </div>
+                <div>
+                    <dt translate="validation.receivedMediaType"></dt>
+                    <dd >{{ vm.validationResults.summary.receivedMediaType }}
+
+                    </dd>
+                </div>
+                <div>
+                    <dt translate="validation.coreRowType">Core row type</dt>
+                    <dd >
+                        {{ (vm.coreDataType && vm.dwcextensions[vm.coreDataType]) ? vm.dwcextensions[vm.coreDataType].title : vm.coreDataType | translate }}
+                    </dd>
+                </div>
+
+                <div>
+                    <dt translate="validation.fileType.EXTENSION.title">Extensions</dt>
+                    <dd>
+                        {{ vm.extensionCount }}
+                    </dd>
+                </div>
+
+            </dl>
+
+            <div class="card__content--warning p-l-05 m-t-1" ng-if="vm.validationResults.summary.receivedMediaType.indexOf('zip') > -1 && vm.validationResults.summary.fileFormat !== 'DWCA'">Please notice that the supplied file was a zipped archive, but was not interpreted as a Darwin Core Archive due to lacking / unparsable MetaData</div>
+        </div>
+    </div>
+    <p  ng-if="vm.jobStatus==='FINISHED'" class="discreet--very smaller dataValidator__fileLocationText"><span translate="validation.reportLocation"></span> <span ng-bind-html="vm.jobUrl | linky"></span>
+        <span translate="validation.reportGenerated"></span> <span>{{ vm.generatedDateFormatted }}</span> <span translate="validation.reportDeletion"></span></p>
+</div>

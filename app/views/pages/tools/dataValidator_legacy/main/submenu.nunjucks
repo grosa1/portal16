@@ -1,0 +1,84 @@
+<span class="relative-anchor-offset"><a name="menu"></a></span>
+
+<nav class="submenu submenu--tabs validator--tabs" id="submenu" ng-init="vm.attachMenuListener()">
+    <ul class="nav-parts">
+        <li class="part-name">
+            {#<h3><a href="#" class="inherit">Content</a></h3>#}
+            <ul class="nav-chapters">
+                <h3 ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'META_DESCRIPTOR' } | limitTo: 1 " translate="validation.fileType.META_DESCRIPTOR.title"></h3>
+                <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName}}Block" ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'META_DESCRIPTOR' } ">
+                    <a ng-href="#{{resultPerResource.fileName}}"  class="text-uppercase">{{resultPerResource.fileName}}</a>
+                    <ul >
+
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-Issues'}}" >
+                            <a ng-href="#{{resultPerResource.fileName}}-Issues"  class="subitem" >
+                                <span class="issue-bullet__warn" ng-if="resultPerResource.issues.length > 0">●</span>
+                                <span class="issue-bullet__approved" ng-if="resultPerResource.issues.length === 0">●</span>
+                                {{ 'validation.issues' | translate }}</a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <h3 ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'METADATA' } | limitTo: 1 " translate="validation.fileType.METADATA.title"></h3>
+                <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName}}Block" ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'METADATA' } ">
+                    <a ng-href="#{{resultPerResource.fileName}}"  class="text-uppercase">{{resultPerResource.fileName}}</a>
+                    <ul >
+
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-Issues'}}" >
+                            <a ng-href="#{{resultPerResource.fileName}}-Issues"  class="subitem" >
+                                <span class="issue-bullet__warn" ng-if="resultPerResource.issues.length > 0">●</span>
+                                <span class="issue-bullet__approved" ng-if="resultPerResource.issues.length === 0">●</span>
+                                {{ 'validation.issues' | translate }}</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <h3 ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'CORE' } : limitTo: 1 " translate="validation.fileType.CORE.title"></h3>
+                <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName}}Block" ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'CORE' }">
+                    <a ng-href="#{{resultPerResource.fileName}}"  class="text-uppercase">{{resultPerResource.fileName}}</a>
+                    <ul >
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-TermsFrequencyBlock'}}" ng-if="resultPerResource.termsFrequency && resultPerResource.fileType !== 'METADATA'">
+                            <a ng-href="#{{resultPerResource.fileName}}-TermsFrequency"  class="subitem" >
+                            <span class="issue-bullet discreet--very" >●</span>
+                            {{ 'validation.termsFrequency.title' | translate }}</a>
+
+                        </li>
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-Issues'}}" >
+                            <a ng-href="#{{resultPerResource.fileName}}-Issues"  class="subitem" >
+                            <span class="issue-bullet__warn" ng-if="resultPerResource.issues.length > 0">●</span>
+                                <span class="issue-bullet__approved" ng-if="resultPerResource.issues.length === 0">●</span>
+                                {{ 'validation.issues' | translate }}</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <h3 ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'EXTENSION' } | limitTo: 1 " translate="validation.fileType.EXTENSION.title"></h3>
+                <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName}}Block" ng-repeat="resultPerResource in vm.validationResults.results | filter: {fileType:'EXTENSION' } ">
+                    <a ng-href="#{{resultPerResource.fileName}}"  class="text-uppercase">{{resultPerResource.fileName}}</a>
+                    <ul >
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-TermsFrequencyBlock'}}" ng-if="resultPerResource.termsFrequency && resultPerResource.fileType !== 'METADATA'">
+                            <a ng-href="#{{resultPerResource.fileName}}-TermsFrequency"  class="subitem" >
+                                <span class="issue-bullet discreet--very" >●</span>
+                                {{ 'validation.termsFrequency.title' | translate }}</a>
+
+                        </li>
+                        <li class="nav-chapter" du-scrollspy="{{ resultPerResource.fileName+'-Issues'}}" >
+                            <a ng-href="#{{resultPerResource.fileName}}-Issues"  class="subitem" >
+                                <span class="issue-bullet__warn" ng-if="resultPerResource.issues.length > 0">●</span>
+                                <span class="issue-bullet__approved" ng-if="resultPerResource.issues.length === 0">●</span>
+                                {{ 'validation.issues' | translate }}</a>
+
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+            </ul>
+        </li>
+    </ul>
+</nav>

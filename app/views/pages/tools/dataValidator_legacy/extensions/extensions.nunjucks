@@ -1,0 +1,78 @@
+<div class="submenu-wrapper white-background ng-cloak" id="submenuWrapper" >
+    <div id="validationResults">
+        <section class="horizontal-stripe--paddingless white-background">
+            <div class="container--desktop">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 ">
+                        <div>
+                            {% include('./submenu.nunjucks') %}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <div>
+                            <div >
+                                <div >
+                                    <section  class="card m-t-1 m-b-1" ng-repeat="extension in vm.extensions" >
+                                    <div class="row card__content">
+                                    <div class="col-xs-12">
+                                        <a href="" id="{{ extension.title | spaceToHyphen}}"></a>
+                                        <div class="anchor-block--tabs click-through" id="{{ extension.title | spaceToHyphen }}Block">
+                                        <h3>{{ extension.title }}</h3>
+                                            <p class="discreet--very dataValidator__clickable-links" ng-bind-html="extension.description | linky"></p>
+
+
+                                            <dl class="inline">
+                                                <div ng-if="extension.issued">
+                                                    <dt >Issued</dt>
+                                                    <dd >
+                                                        {{ extension.issued }}
+                                                    </dd>
+                                                </div>
+                                                <div>
+                                                    <dt >Identifier</dt>
+                                                    <dd >
+                                                        {{ extension.identifier }}
+                                                    </dd>
+                                                </div>
+
+                                                <div ng-if="extension.subject">
+                                                    <dt >Subject</dt>
+                                                    <dd >
+                                                        {{ extension.subject }}
+                                                    </dd>
+                                                </div>
+                                                <div ng-if="extension.url">
+                                                    <dt >Url</dt>
+                                                    <dd class="dataValidator__clickable-links">
+                                                       <a ng-href="{{ extension.url }}">{{ extension.url }}</a>
+                                                    </dd>
+                                                </div>
+
+
+                                            </dl>
+
+
+
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </section>
+
+                                    <div class="dataValidator__bottomSpacer"></div>
+                                </div>
+
+                            </div>
+                            <div class="white-background p-t-1">
+                                <div class="container--narrow seperator m-t-1">
+                                    {#{% include "./dataDescription.nunjucks" %}#}
+                                    {#{% include "./registration.nunjucks" %}#}
+                                    {#{% include "./citation.nunjucks" %}#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

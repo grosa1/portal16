@@ -813,6 +813,55 @@ function routerConfig($stateProvider, $locationProvider, BUILD_VERSION, LOCALE) 
             controller: 'derivedDatasetAboutCtrl',
             controllerAs: 'derivedDatasetAbout'
         })
+
+        // Temporarily make the old data validator available
+        .state('dataValidatorLegacy', {
+            parent: 'localization',
+            url: '/tools/data-validator-legacy',
+            views: {
+                main: {
+                    templateUrl: '/api/template/tools/dataValidatorLegacy.html?v=' + BUILD_VERSION,
+                    controller: 'dataValidatorLegacyCtrl',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+        
+        .state('dataValidatorLegacyExtensions', {
+            parent: 'dataValidatorLegacy',
+            url: '/extensions/:jobid?',
+            templateUrl: '/api/template/tools/dataValidatorLegacy/extensions.html?v=' + BUILD_VERSION,
+            controller: 'dwcExtensionsCtrl',
+            controllerAs: 'vm'
+        })
+
+        .state('dataValidatorLegacyExtensionsKey', {
+            parent: 'dataValidatorLegacyKey',
+            url: '/extensions',
+            templateUrl: '/api/template/tools/dataValidatorLegacy/extensions.html?v=' + BUILD_VERSION,
+            controller: 'dwcExtensionsCtrl',
+            controllerAs: 'vm'
+        })
+        .state('dataValidatorLegacyKey', {
+            parent: 'localization',
+            url: '/tools/data-validator-legacy/:jobid',
+            views: {
+                main: {
+                    templateUrl: '/api/template/tools/dataValidatorLegacyKey.html?v=' + BUILD_VERSION,
+                    controller: 'dataValidatorLegacyKeyCtrl',
+                    controllerAs: 'vm'
+                }
+            }
+        })
+
+
+        .state('dataValidatorLegacyKeyDocument', {
+            parent: 'dataValidatorLegacyKey',
+            url: '/document',
+            templateUrl: '/api/template/tools/dataValidatorLegacy/document.html?v=' + BUILD_VERSION,
+            controller: 'dataValidatorLegacyDocumentCtrl',
+            controllerAs: 'vm'
+        })
     ;
 
     // if unknown route then go to server instead of redirecting to home: $urlRouterProvider.otherwise('/');

@@ -5,7 +5,6 @@ var fixedUtil = require('../../dataset/key/main/submenu');
 require('../../../components/fileUpload/fileUpload.directive');
 require('./feedback.service');
 require('./intro/steps.directive');
-var _ = require('lodash');
 
 angular
     .module('portal')
@@ -170,7 +169,7 @@ function dataValidatorCtrl($scope, $timeout, $http, $state, $sessionStorage, Use
       //  alert("error")
     }
 
-    function handleFailedJob(data) {
+/*     function handleFailedJob(data) {
         if (typeof data === 'string') {
             vm.errorMessage = _.get(data, 'result.errorMessage');
         } else {
@@ -178,7 +177,7 @@ function dataValidatorCtrl($scope, $timeout, $http, $state, $sessionStorage, Use
             vm.errorCode = _.get(data, 'result.errorCode');
             vm.errorMessage = _.get(data, 'result.errorMessage');
         }    
-    }
+    } */
 
 
     vm.attachTabListener = function() {

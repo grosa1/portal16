@@ -172,7 +172,8 @@
       }
     },
     "validatingFile": "validating",
-    "fileName": "File name"
+    "fileName": "File name",
+    "needCSVvalidationUseOldValidator" : "Need CSV validation? The legacy validator is available"
 
   }
 

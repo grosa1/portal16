@@ -418,6 +418,14 @@ require('../../../pages/tools/dataValidator/document/dataValidatorDocument.ctrl'
 require('../../../pages/tools/dataValidator/about/dataValidatorAbout.ctrl');
 require('../../../pages/tools/dataValidator/extensions/dwcExtensions.ctrl');
 
+/** Temporarily make the old data validator available*/
+require('../../../pages/tools/dataValidator_legacy/dataValidator.ctrl');
+require('../../../pages/tools/dataValidator_legacy/dataValidatorKey.ctrl');
+
+require('../../../pages/tools/dataValidator_legacy/document/dataValidatorDocument.ctrl');
+require('../../../pages/tools/dataValidator_legacy/about/dataValidatorAbout.ctrl');
+require('../../../pages/tools/dataValidator_legacy/extensions/dwcExtensions.ctrl');
+/** */
 
 require('./angular/publisher.resource');
 require('./angular/publisherFilter.service');

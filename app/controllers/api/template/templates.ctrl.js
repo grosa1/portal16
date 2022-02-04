@@ -303,3 +303,37 @@ router.get('/tools/derivedDataset/about.html', function(req, res, next) {
 router.get('/search/sequenceResult.html', function(req, res, next) {
     helper.renderPage(req, res, next, {}, 'pages/tools/sequenceMatching/sequenceSearchResult');
 });
+
+// Temporarily make the old validator available
+
+router.get('/tools/dataValidatorLegacy.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/dataValidator.template.nunjucks');
+});
+
+router.get('/tools/dataValidatorLegacyKey.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/dataValidatorKey.template.nunjucks');
+});
+
+router.get('/tools/dataValidatorLegacy/results/issues.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/results/issues.html');
+});
+
+router.get('/tools/dataValidatorLegacy/results/termsFrequency.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/results/termsFrequency.html');
+});
+
+router.get('/tools/dataValidatorLegacy/validationResults.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/validationResults.html');
+});
+
+router.get('/tools/dataValidatorLegacy/document.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/document/prose.nunjucks');
+});
+
+router.get('/tools/dataValidatorLegacy/about.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/about/dataValidatorAbout.template.nunjucks');
+});
+
+router.get('/tools/dataValidatorLegacy/extensions.html', function(req, res, next) {
+    helper.renderPage(req, res, next, {}, 'pages/tools/dataValidator_legacy/extensions/extensions.nunjucks');
+});

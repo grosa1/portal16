@@ -1,0 +1,125 @@
+<h3 translate="validation.issues" ></h3>
+<div>
+    <div class="scrollable-y" ng-repeat="(issueCategory, issueBlockList) in resultPerResource.issuesMap">
+        <h4 translate="validation.category.{{ issueCategory }}"></h4>
+
+        <!--<span class="badge-composite&#45;&#45;{{issue.severity | lowercase }}"-->
+              <!--ng-repeat="issue in occDownload.issues | limitTo:occDownload.issueLimit">-->
+                                                <!--<span class="badge">{{issue.count | localNumber:occDownload.state.query.locale }}</span>-->
+                                                <!--<span class="badge">{{'occurrenceIssue.' + issue.title | translate}}</span>-->
+                                            <!--</span>-->
+
+
+        <div  ng-repeat="issueBlock in issueBlockList">
+
+            <div layout="row">
+<div >
+            <span class="badge-composite--{{issueBlock.severity | lowercase }}" ng-if="issueBlock.count">
+
+
+
+
+                <span class="badge"
+                      translate="validation.issueType.{{ issueBlock.issue }}" ng-if="issueCategory !== 'OCC_INTERPRETATION_BASED' && issueCategory !== 'CLB_INTERPRETATION_BASED'"></span>
+                <span  class="badge" ng-if="issueCategory === 'OCC_INTERPRETATION_BASED'"
+                       translate="occurrenceIssue.{{ issueBlock.issue }}"></span>
+                <span  class="badge" ng-if="issueCategory === 'CLB_INTERPRETATION_BASED'"
+                       translate="issueEnum.{{ issueBlock.issue }}"></span>
+              <span class="badge" > {{  issueBlock.count }}</span>
+            </span>
+
+
+
+             <span class="badge badge--{{issueBlock.severity | lowercase }}"
+                   translate="validation.issueType.{{ issueBlock.issue }}" ng-if="!issueBlock.count && issueCategory !== 'OCC_INTERPRETATION_BASED' && issueCategory !== 'CLB_INTERPRETATION_BASED'"></span>
+                <span  class="badge badge--{{issueBlock.severity | lowercase }}" ng-if="!issueBlock.count && issueCategory === 'OCC_INTERPRETATION_BASED'"
+                       translate="occurrenceIssue.{{ issueBlock.issue }}"></span>
+                <span  class="badge badge--{{issueBlock.severity | lowercase }}" ng-if="!issueBlock.count && issueCategory === 'CLB_INTERPRETATION_BASED'"
+                       translate="issueEnum.{{ issueBlock.issue }}"></span>
+</div>
+ <span ng-class="{'gb-icon-unfold-more-horizontal': !vm.issueSampleExpanded[issueBlock.issue], 'gb-icon-unfold-less-horizontal': vm.issueSampleExpanded[issueBlock.issue]}" ng-click="vm.issueSampleExpanded[issueBlock.issue] = !vm.issueSampleExpanded[issueBlock.issue]"></span>
+
+            </div>
+
+
+
+                <!--<a class="badge-composite&#45;&#45;{{issueBlock.severity | lowercase }} href="" ng-if="issueCategory === 'OCC_INTERPRETATION_BASED' || issueCategory === 'CLB_INTERPRETATION_BASED'"-->
+                   <!--ng-click="dataValidator.issueSampleExpanded[issueBlock.issue] = !dataValidator.issueSampleExpanded[issueBlock.issue]">-->
+
+                <!--<span  ng-if="issueCategory === 'OCC_INTERPRETATION_BASED'"-->
+                       <!--translate="occurrenceIssue.{{ issueBlock.issue }}"></span>-->
+                    <!--<span  ng-if="issueCategory === 'CLB_INTERPRETATION_BASED'"-->
+                           <!--translate="taxon.issueEnum.{{ issueBlock.issue }}"></span>-->
+                <!--</a>-->
+
+            <div ng-show="vm.issueSampleExpanded[issueBlock.issue]">
+                <!-- comment in when issue help items are in prod contentful-->
+
+              <span gb-help="issueHelp.{{issueBlock.issue}}" gb-help-options="{isCms: false}" class="pull-right"></span>
+
+
+                <table ng-if="issueBlock.sample" class="table table-bordered table-striped m-t-1"
+                   >
+                <thead>
+                <tr>
+                    <th ng-repeat="issueLine in issueBlock.headers">
+                        {{ issueLine }}
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="issueSample in issueBlock.sample">
+                    <td ng-repeat="issueLine in issueBlock.headers" class="table-cell--wide">
+                        {{ issueSample.allData[issueLine] }}
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+            <table ng-if="issueBlock.issue !== 'UNKNOWN_TERM' && issueBlock.issue !== 'DUPLICATED_TERM' && !(issueBlock.sample || issueBlock.sample.length ===0)" class="table table-bordered table-striped m-t-1"
+                   >
+                <thead>
+                <tr>
+                    <th ng-repeat="(key, val) in issueBlock">
+                        {{ key }}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ng-repeat="(key, val) in issueBlock" class="table-cell--wide">
+                        {{ val }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table ng-if="!(issueBlock.sample || issueBlock.sample.length ===0) && (issueBlock.issue === 'UNKNOWN_TERM' ||  issueBlock.issue === 'DUPLICATED_TERM')" class="table table-bordered table-striped m-t-1"
+                   >
+                <thead>
+                <tr >
+                    <th ng-repeat="(key, val) in issueBlock.relatedData[0]">
+                        {{ key }}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in issueBlock.relatedData">
+                    <td ng-repeat="(key, val) in row" class="table-cell--wide">
+                    <span ng-if="key !== 'rowType'">{{ val }}</span>
+                    <a ng-href="{{portal.urlPrefix}}/tools/data-validator/{{vm.jobid}}/extensions#{{vm.dwcextensions[val].title | spaceToHyphen}}" ng-if="key === 'rowType'">{{ vm.dwcextensions[val].title}}</a>
+
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<span class="badge badge--approved" ng-if="resultPerResource.issues.length ===0" translate="validation.issueType.NoIssuesFound"></span>
