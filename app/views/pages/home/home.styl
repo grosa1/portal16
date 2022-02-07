@@ -93,9 +93,16 @@ $dark_overlay_color = rgba(0, 0, 0, $dark_overlay_opacity)
     }
 }
 
+.home__counts .article-box {
+  width 300px
+}
+.articles, .featureBlock {
+    .article-box {
+        width 360px
+    }
+}
 .articles, .home__counts, .featureBlock {
     .article-box {
-        width 300px
         max-width 100%
         margin $halfGutter auto
         &__details {
@@ -114,21 +121,28 @@ $dark_overlay_color = rgba(0, 0, 0, $dark_overlay_opacity)
         &__image {
             position: relative
         }
+        &__illustration {
+            padding: 32px;
+            padding-bottom: 0;
+            text-align: center;
+        }
         &__title {
             p {
                 margin: 0 !important
             }
             font-weight 400
-            font-size 16px
-            line-height $lineHeightRatio
-            margin 0
+            font-size 18px
+            // line-height $lineHeightRatio
+            line-height 36px // Javier really? That is what the mock states, but it seems weird
+            margin 16px 0
             color #555
         }
         &__footer {
-            margin-top 10px
-            font-size 14px
+            margin 8px 0
+            font-size 16px
+            line-height 28px
             font-weight normal
-            color #777
+            color #4B5348
         }
         &--stats {
           text-align: center
@@ -169,9 +183,14 @@ $dark_overlay_color = rgba(0, 0, 0, $dark_overlay_opacity)
 }
 
 +isAbove(1000px) {
-    .articles, .home__counts {
+    .home__counts {
         .article-box {
             width 280px;//"calc(100% / 4 - %s)" % ($halfGutter* 2)
+        }
+    }
+    .articles {
+        .article-box {
+            width 360px;//"calc(100% / 4 - %s)" % ($halfGutter* 2)
             flex 1 1 auto
         }
     }

@@ -1,7 +1,7 @@
 .block {
   &__header {
     font-size: 36px
-    margin: 64px 0
+    margin: 32px 0
   }
   &__actions {
     margin: 0 -16px;
@@ -12,7 +12,6 @@
 }
 
 .block_media {
-  
   &__content {
     display: flex
     font-size: 18px
@@ -31,6 +30,7 @@
 
 .block_carousel {
   .carousel {
+    cursor: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -59,13 +59,14 @@
     &__dots {
       display: flex;
       justify-content: center;
+      margin: 64px 0;
       li {
         border: 1px solid #707070;
         display: inline-block;
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        margin: 8px;
+        margin: 0 8px;
         &.active {
           background: #4B5348;
         }
@@ -92,7 +93,8 @@
   &__imageArea {
     font-size: 12px;
     line-height: 16px;
-    margin: 32px 72px 16px 48px!important
+    margin: 32px 72px 16px 48px!important;
+    padding: 0!important;
     img {
       margin-bottom: 32px;
     }

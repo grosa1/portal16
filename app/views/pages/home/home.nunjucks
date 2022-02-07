@@ -76,51 +76,6 @@
   </script>
 
 
-
-        <div class="horizontal-stripe white-background">
-          <div class="container--desktop">
-            <div class="block_carousel">
-              <h2 class="block__header">Data use in research</h2>
-              <div>
-                <uib-carousel 
-                  active="home.active" 
-                  interval="home.myInterval" 
-                  no-wrap="home.noWrapSlides"
-                  no-transition="false"
-                  template-url="carouseltest.html"
-                  >
-                  <uib-slide template-url="carouselslide.html" ng-repeat="slide in home.slides track by slide.id" index="slide.id">
-                    <div class="block_slide">
-                      <div class="block_slide__content">
-                        <div class="block_slide__imageArea">
-                          <img src="/img/Animalia_ASIA_Hong-Kong_Macaca@2x.png">
-                          <div>
-                            Polistes olivaceus (Deg., 1773) observed in Cocos (Keeling) Islands by christopherburwell (CC BY-NC 4.0)
-                          </div>
-                        </div>
-                        <div>
-                          <div class="block_slide__textContent">
-                            <h2>Biogeography</h2>
-                            <h2>6,356</h2>
-                            <h5>Peer-reviewed papers</h5>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at lorem. Vestibulum malesuada augue eu nisi tempus auctor. Donec in luctus arcu. Maecenas sit amet.
-                            </p>
-                            <div class="block__actions">
-                              <a href="/what-is-gbif" class="block__action">Read more</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </uib-slide>
-                </uib-carousel>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
         <div class="horizontal-stripe white-background p-t-05">
             <div class="container--desktop">
                 <div class="home__counts">
@@ -184,6 +139,23 @@
                 {% if highlights | isNotEmpty %}
                     <div class="home__news">
                         <div class="articles">
+
+
+                          <article class="card card--spaced--very card--flexible article-box hoverBox">
+                              <a href="{$ article.url | localizeLink(gb.locales.urlPrefix) $}" class="article-box__illustration">
+                                  <img src="/img/Asset_142x_f@2x.png"
+                                      alt="" class="article-thumb">
+                              </a>
+                            <div class="card__stripe--expandable inherit">
+                                <div class="card__content">
+                                    <h4 class="article-box__title">
+                                        <a href="/sdf" class="inherit">Human Health</a>
+                                    </h4>
+                                    <div class="article-box__footer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at </div>
+                                </div>
+                            </div>
+                        </article>
+                        
                         {% for feature in highlights | slice(0,8) %}
                             {% if feature.contentType == 'News'%}
                                 {$ newsArticle(feature, __) $}
@@ -199,6 +171,49 @@
                     </div>
                 {% endif %}
             </div>
+        </div>
+
+        <div class="horizontal-stripe white-background">
+          <div class="container--desktop">
+            <div class="block_carousel">
+              <h2 class="block__header">Data use in research</h2>
+              <div>
+                <uib-carousel 
+                  active="home.active" 
+                  interval="home.myInterval" 
+                  no-wrap="home.noWrapSlides"
+                  no-transition="false"
+                  template-url="carouseltest.html"
+                  >
+                  <uib-slide template-url="carouselslide.html" ng-repeat="slide in home.slides track by slide.id" index="slide.id">
+                    <div class="block_slide">
+                      <div class="block_slide__content">
+                        <div class="block_slide__imageArea">
+                          <img src="/img/Animalia_ASIA_Hong-Kong_Macaca@2x.png">
+                          <div>
+                            Polistes olivaceus (Deg., 1773) observed in Cocos (Keeling) Islands by christopherburwell (CC BY-NC 4.0)
+                          </div>
+                        </div>
+                        <div>
+                          <div class="block_slide__textContent">
+                            <h2>Biogeography</h2>
+                            <h2 count="https://api.gbif.org/v1/dataset/search?peerReview=true">6,356</h2>
+                            <h5>Peer-reviewed papers</h5>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at lorem. Vestibulum malesuada augue eu nisi tempus auctor. Donec in luctus arcu. Maecenas sit amet.
+                            </p>
+                            <div class="block__actions">
+                              <a href="/what-is-gbif" class="block__action">Read more</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </uib-slide>
+                </uib-carousel>
+              </div>
+            </div>
+          </div>
         </div>
 
         {#<form class="search-box mapPopup">#}
@@ -232,7 +247,7 @@
         <article class="card card--flexible article-box hoverBox">
             {% if article.primaryImage %}
                 <a href="{$ gb.locales.urlPrefix $}/{$ article.contentType $}/{$ article.id $}/{$ article._slug $}" class="card__stripe article-box__image">
-                    <img src="{$ _meta.imageCache $}600x300/http:{$ article.primaryImage.file.url | encodeURI $}"
+                    <img src="{$ _meta.imageCache $}500x400/http:{$ article.primaryImage.file.url | encodeURI $}"
                          alt="" class="article-thumb">
                     <span class="article-box__type">{$ __("homepage.featureTypes." + article.contentType ) $}</span>
                 </a>
@@ -286,10 +301,10 @@
 
 {% macro featureArticle(article, __) %}
     {% if article %}
-        <article class="card card--spaced card--flexible article-box hoverBox">
+        <article class="card card--spaced--very card--flexible article-box hoverBox">
             {% if article.primaryImage %}
                 <a href="{$ article.url | localizeLink(gb.locales.urlPrefix) $}" class="card__stripe article-box__image">
-                    <img src="{$ _meta.imageCache $}600x300/http:{$ article.primaryImage.file.url | encodeURI $}"
+                    <img src="{$ _meta.imageCache $}500x400/http:{$ article.primaryImage.file.url | encodeURI $}"
                          alt="" class="article-thumb">
                     {% if article.type %}<span class="article-box__type">{$ __("homepage.featureTypes." + article.type ) $}</span>{% endif %}
                 </a>
@@ -310,10 +325,10 @@
 
 {% macro newsArticle(article, __) %}
     {% if article %}
-        <article class="card card--spaced card--flexible article-box hoverBox">
+        <article class="card card--spaced--very card--flexible article-box hoverBox">
             {% if article.primaryImage %}
                 <a href="{$ gb.locales.urlPrefix + '/news/' + article.id $}" class="card__stripe article-box__image">
-                    <img src="{$ _meta.imageCache $}600x300/http:{$ article.primaryImage.file.url | encodeURI $}"
+                    <img src="{$ _meta.imageCache $}500x400/http:{$ article.primaryImage.file.url | encodeURI $}"
                          alt="" class="article-thumb">
                     <span class="article-box__type">{$ __("homepage.featureTypes.news" ) $}</span>
                 </a>
@@ -332,10 +347,10 @@
 
 {% macro dataUseArticle(article, __) %}
     {% if article %}
-        <article class="card card--spaced card--flexible article-box hoverBox">
+        <article class="card card--spaced--very card--flexible article-box hoverBox">
             {% if article.primaryImage %}
                 <a href="{$ gb.locales.urlPrefix + '/data-use/' + article.id $}" class="card__stripe article-box__image">
-                    <img src="{$ _meta.imageCache $}600x300/http:{$ article.primaryImage.file.url | encodeURI $}"
+                    <img src="{$ _meta.imageCache $}500x400/http:{$ article.primaryImage.file.url | encodeURI $}"
                          alt="" class="article-thumb">
                     <span class="article-box__type">{$ __("homepage.featureTypes.dataUse" ) $}</span>
                 </a>
@@ -354,10 +369,10 @@
 
 {% macro eventArticle(article, __) %}
     {% if article %}
-        <article class="card card--spaced card--flexible article-box hoverBox">
+        <article class="card card--spaced--very card--flexible article-box hoverBox">
             {% if article.primaryImage %}
                 <a href="{$ gb.locales.urlPrefix + '/event/' + article.id $}" class="card__stripe article-box__image">
-                    <img src="{$ _meta.imageCache $}600x300/http:{$ article.primaryImage.file.url | encodeURI $}"
+                    <img src="{$ _meta.imageCache $}500x400/http:{$ article.primaryImage.file.url | encodeURI $}"
                          alt="" class="article-thumb">
                    <span class="article-box__type">{$ __("homepage.featureTypes.event" ) $}</span>
                 </a>
