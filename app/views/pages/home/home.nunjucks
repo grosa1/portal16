@@ -76,63 +76,10 @@
   </script>
 
 
-        <div class="horizontal-stripe white-background p-t-05">
-            <div class="container--desktop">
-                <div class="home__counts">
-                    <article class="article-box article-box--stats">
-                        <a ng-href="{{ portal.urlPrefix }}/occurrence/search?occurrence_status=PRESENT" class="inherit noUnderline">
-                            <img src="/img/counts_mock.svg" />
-                            <div count="{{ portal.dataApi }}occurrence/search?occurrence_status=PRESENT">1.000,000,000</div>
-                            <h3 class="discreet">{$ __('homepage.counts.occurrences') $}</h3>
-                        </a>
-                    </article>
-                    <article class="article-box article-box--stats">
-                        <a ng-href="{{ portal.urlPrefix }}/dataset/search" class="inherit noUnderline">
-                            <img src="/img/counts_mock.svg" />
-                            <div count="{{ portal.dataApi }}dataset/search">40,000</div>
-                            <h3 class="discreet">{$ __('homepage.counts.datasets') $}</h3>
-                        </a>
-                    </article>
-                    <article class="article-box article-box--stats">
-                        <a ng-href="{{ portal.urlPrefix }}/publisher/search" class="inherit noUnderline">
-                            <img src="/img/counts_mock.svg" />
-                            <div count="/api/publisher/count" >1,300</div>
-                            <h3 class="discreet">{$ __('homepage.counts.publishers') $}</h3>
-                        </a>
-                    </article>
-                    <article class="article-box article-box--stats">
-                        <a ng-href="{{ portal.urlPrefix }}/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true" class="inherit noUnderline">
-                            <img src="/img/counts_mock.svg" />
-                            <div count="/api/resource/search?contentType=literature&literatureType=journal&relevance=GBIF_USED&peerReview=true&limit=0">3,450</div>
-                            <h3 class="discreet">{$ __('homepage.counts.literature') $}</h3>
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <div class="horizontal-stripe light-background p-t-05">
-          <div class="container--desktop">
-            <div class="block_media">
-              <h2 class="block__header">What is GBIF?</h2>
-              <div class="block_media__content">
-                <div>
-                  <img src="/img/mundogbif2x@2x.png">
-                </div>
-                <div>
-                  <div class="block_media__textContent">
-                    <p>
-                      GBIF—the Global Biodiversity Information Facility— is an international network and data infrastructure funded by the world’s governments and aimed at providing anyone, anywhere, open access to data about all types of life on Earth.
-                    </p>
-                    <div class="block__actions">
-                      <span video-modal source="'https://player.vimeo.com/video/434713189?h=52e3fcab18'"><a href="" class="block__action">Watch a video</a></span>
-                      <a href="/what-is-gbif" class="block__action">Learn more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% include "../resource/blocks/counts/counts.nunjucks" %}
+        {% include "../resource/blocks/media/media.nunjucks" %}
+
+        
         <div class="horizontal-stripe bare-background">
             <div class="container--desktop">
 

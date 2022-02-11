@@ -1,0 +1,25 @@
+.block_media {
+  &__content {
+    font-size: 18px;
+    line-height: 2em;
+    > div {
+      padding: 32px;
+    }
+  }
+
+  &__textContent {
+    padding: 16px;
+  }
+}
+
++isAbove(576px) {
+  .block_media {
+    &__content {
+      display: flex;
+      > div {
+        flex: 1 1 50%;
+        margin: 0 8px;
+      }
+    }
+  }
+}
