@@ -1,10 +1,10 @@
-<div class="horizontal-stripe light-background">
+<div class="horizontal-stripe light-background p-0">
   <div class="container--desktop">
     <div class="block_media">
       <h2 class="block__header">What is GBIF?</h2>
       <div class="block_media__content">
         <div class="block_media__mediaArea">
-          <img src="/img/mundogbif2x@2x.png">
+          <img src="/img/whatisgbif.png">
         </div>
         <div class="block_media__textArea">
           <div class="block_media__textContent">
