@@ -1,43 +1,32 @@
 <div class="horizontal-stripe bare-background p-0">
   <div class="container--desktop">
     <div class="block_features">
-      <h2 class="block__header">Resources and documentation</h2>
+      {% if main.fields.title and not main.fields.hideTitle %}
+      <h2 class="block__header">{$ main.fields.title | renderMarkdownCustom(["i"]) $}</h2>
+      {% endif %}
+      {% if main.fields.description %}
       <div class="block__description">
-        GBIF—the Global Biodiversity Information Facility— is an international network and data infrastructure funded by the world’s governments and aimed at providing anyone, anywhere, open access to data about all types of life on Earth.
+        {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
       </div>
+      {% endif %}
       <div class="block_features__list">
         
-        {% for feature in highlights | slice(0,4) %}
+        {% for featureId in main.fields.features %}
+            {% set feature = resolved.Entry[featureId.sys.id] %}
+            {% set featureType = resolved.Entry[featureId.sys.id].sys.contentType.sys.id %}
 
-        <article class="card card--spaced--very card--flexible block_features__item hoverBox">
-          <a href="/sdf" class="block_features__item__imageArea">
-              <img src="/img/health.png"
-                  alt="" class="block_features__item__image">
-          </a>
-          <div class="card__stripe--expandable inherit">
-            <div class="card__content">
-              <h4 class="block_features__item__title">
-                <a href="/sdf" class="inherit">Human Health</a>
-              </h4>
-              <div class="block_features__item__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card card--spaced--very card--flexible block_features__item hoverBox">
-          <a href="/sdf" class="block_features__item__imageArea">
-              <img src="//api.gbif-uat.org/v1/image/unsafe/500x400/http:%2F%2Fimages.ctfassets.net%2Fuo17ejk9rkwj%2F5bHXzZmygAT9hxp6goRSSs%2F481019f80f03e6854b7dd3dd9f054202%2FYRA-v1-f.png"
-                  alt="" class="block_features__item__image">
-          </a>
-          <div class="card__stripe--expandable inherit">
-            <div class="card__content">
-              <h4 class="block_features__item__title">
-                <a href="/sdf" class="inherit">Human Health</a>
-              </h4>
-              <div class="block_features__item__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at </div>
-            </div>
-          </div>
-        </article>
+            {% if featureType == "News" %}
+              {% include "./types/news.nunjucks" %}
+            {% endif %}
+            {% if featureType == "DataUse" %}
+              {% include "./types/dataUse.nunjucks" %}
+            {% endif %}
+            {% if featureType == "Event" %}
+              {% include "./types/event.nunjucks" %}
+            {% endif %}
+            {% if featureType == "feature" %}
+              {% include "./types/feature.nunjucks" %}
+            {% endif %}
 
         {% endfor %}
 

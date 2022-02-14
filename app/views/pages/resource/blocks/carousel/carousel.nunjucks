@@ -1,40 +1,73 @@
 <div class="horizontal-stripe white-background p-0">
   <div class="container--desktop">
     <div class="block_carousel">
-      <h2 class="block__header">Data use in research</h2>
+      {% if main.fields.title and not main.fields.hideTitle %}
+      <h2 class="block__header">{$ main.fields.title | renderMarkdownCustom(["i"]) $}</h2>
+      {% endif %}
+      {% if main.fields.description %}
+      <div class="block__description">
+        {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+      </div>
+      {% endif %}
       <div>
         <uib-carousel 
-          active="home.active" 
-          interval="home.myInterval" 
-          no-wrap="home.noWrapSlides"
+          active="0" 
+          interval="0" 
+          no-wrap="false"
           no-transition="false"
           template-url="carouseltest.html"
           >
-          <uib-slide template-url="carouselslide.html" ng-repeat="slide in home.slides track by slide.id" index="slide.id">
-            <div class="block_slide">
-              <div class="block_slide__content">
-                <div class="block_slide__imageArea">
-                  <img src="/img/Animalia_ASIA_Hong-Kong_Macaca@2x.png">
-                  <div class="block_slide__imageArea__caption">
-                    Polistes olivaceus (Deg., 1773) observed in Cocos (Keeling) Islands by christopherburwell (CC BY-NC 4.0)
+
+          {% for featureId in main.fields.carouselElements %}
+            {% set feature = resolved.Entry[featureId.sys.id] %}
+            {% set featureType = resolved.Entry[featureId.sys.id].sys.contentType.sys.id %}
+            {% set image = resolved.Asset[feature.fields.primaryImage.sys.id].fields %}
+
+            <uib-slide template-url="carouselslide.html" index="{$ loop.index0 $}">
+              <div class="block_slide {% if loop.index0 > 0 %}ng-cloak{% endif %}">
+                <div class="block_slide__content">
+                  <div class="block_slide__imageArea {% if feature.fields.roundImage %} block_slide__imageArea--rounded {% endif %}">
+                    <img src="{$ _meta.imageCache $}{% if feature.fields.roundImage %}480x480/{% endif %}http:{$ image.file.url | encodeURI $}">
+                    <div class="block_slide__imageArea__caption">
+                      {$ image.description | sanitizeTrusted(gb.locales.urlPrefix) | safe $}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div class="block_slide__textContent">
-                    <h2>Biogeography</h2>
-                    <h2 count="https://api.gbif.org/v1/dataset/search?peerReview=true">6,356</h2>
-                    <h5>Peer-reviewed papers</h5>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et tincidunt dolor, eget tincidunt ligula. Sed quis nisl vel metus maximus viverra commodo at lorem. Vestibulum malesuada augue eu nisi tempus auctor. Donec in luctus arcu. Maecenas sit amet.
-                    </p>
-                    <div class="block__actions">
-                      <a href="/what-is-gbif" class="block__action">Read more</a>
+                  <div>
+                    <div class="block_slide__textContent">
+                      <h2 class="block_slide__textContent__title">
+                        <div>
+                          {$ feature.fields.title | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+                        </div>
+                        {% if feature.fields.titleCountPart %}
+                        <div class="block_slide__textContent__title__count" count="{$ feature.fields.titleCountPart $}">&nbsp;</div>
+                        {% endif %}
+                        {% if feature.fields.subtitle %}
+                        <div class="block_slide__textContent__title__small">{$ feature.fields.subtitle | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}</div>
+                        {% endif %}
+                      </h2>
+                      <div class="block_slide__textContent__body">
+                        {$ feature.fields.body | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+                      </div>
+                      {% if feature.fields.callToAction %}
+                      <div class="block__actions">
+                        {% for ctaId in feature.fields.callToAction %}
+                          {% set cta = resolved.Entry[ctaId.sys.id] %}
+                          {% if "https://player.vimeo.com" in cta.fields.url %}
+                            <span video-modal source="'{$ cta.fields.url $}'"><a href="" class="block__action">{$ cta.fields.label $}</a></span>
+                          {% else %}
+                          <a href="{$ cta.fields.url $}" class="block__action">{$ cta.fields.label $}</a>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </uib-slide>
+            </uib-slide>
+          {% endfor %}
+          
+
         </uib-carousel>
       </div>
     </div>

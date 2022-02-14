@@ -13,7 +13,11 @@
           {% endif %}
 
           {% if type == "featureBlock" %}
-            {% include "./blocks/features.nunjucks" %}
+            {% include "../../blocks/features/features.nunjucks" %}
+          {% endif %}
+
+          {% if type == "carousel" %}
+            {% include "../../blocks/carousel/carousel.nunjucks" %}
           {% endif %}
         {% endfor %}
     </article>

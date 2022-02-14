@@ -11,9 +11,30 @@
     flex 0 1 360px;
     &__imageArea {
       text-align: center;
+      position: relative;
+      a {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
       img {
         width: 100%;
       }
+    }
+    &__type {
+      position: absolute;
+      margin: 16px;
+      background: rgba(0,0,0,.33);
+      padding: 4px 8px;
+      color: #fff;
+      bottom: 0;
+      right: 0;
+      font-size: 14px;
+      line-height 1.5em;
+      display: block;
     }
     &__title {
       margin: 16px 0;
@@ -21,6 +42,10 @@
       color: #575757;
       line-height: 1.8em
       font-weight: normal;
+    }
+    &__date {
+      margin-bottom: 16px;
+      font-size: 16px;
     }
     &__description {
       font-size: 16px;
@@ -51,7 +76,7 @@
   }
 }
 
-+isAbove(800px) {
++isAbove(900px) {
   .block_features {
     &__item {
       flex 0 1 auto
@@ -67,7 +92,7 @@
   .block_features {
     &__item {
       &__description {
-        -webkit-line-clamp: unset;
+        -webkit-line-clamp: 4;
       }
     }
   }
