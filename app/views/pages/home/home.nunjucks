@@ -2,7 +2,7 @@
 
 {% block page %}
     <div class="wrapper-horizontal-stripes home" ng-controller="homeCtrl as home">
-        <div class="home__header" style="background-image: url('/img/gbif_lizard_green.jpg')">
+        <div class="home__header" style="background-image: url('{$ _meta.imageCache $}1500x750/http:{$ resolved.Asset[main.fields.primaryImage[0].sys.id].fields.file.url | encodeURI  $}')">
             <div>
                 <div class="container--desktop">
                     <div class="home__header__hero-text">
@@ -49,9 +49,8 @@
         </div>
 
         {% include "../resource/blocks/counts/counts.nunjucks" %}
-        {% include "../resource/blocks/media/media.nunjucks" %}
-        {% include "../resource/blocks/carousel/carousel.nunjucks" %}
-        {% include "../resource/blocks/features/features.nunjucks" %}
+        {% include "../resource/key/composition/compositionContent.nunjucks" %}
+        
         <div class="horizontal-stripe--paddingless light-background seperator" style="width:100%;height:0px;padding-bottom:40%;position:relative;">
             <span class="relative-anchor-offset"><a href="" id="map"></a></span>
             <div style="position:absolute;top:0;bottom:0;left:0;right:0;">

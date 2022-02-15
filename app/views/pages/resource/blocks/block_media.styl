@@ -4,6 +4,9 @@
     padding: 32px 0;
     padding-left: 32px;
     margin: 0;
+    &__small {
+      font-size: 16px;
+    }
   }
 
   &__description {
@@ -17,9 +20,11 @@
 
   &__actions {
     margin: 0 -16px;
+    margin-top: 64px;
   }
 
   &__action {
+    display: inline-block;
     margin: 0 16px;
   }
 }
@@ -28,6 +33,14 @@
   .block {
     &__header {
       padding-top: 64px
+    }
+  }
+}
+
++isAbove(1000px) {
+  .block {
+    &__header {
+      padding-top: 96px
     }
   }
 }

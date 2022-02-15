@@ -1,8 +1,8 @@
-<div class="horizontal-stripe white-background p-0">
+<section class="horizontal-stripe {$ main.fields.backgroundColour $}-background p-0">
   <div class="container--desktop">
     <div class="block_carousel">
       {% if main.fields.title and not main.fields.hideTitle %}
-      <h2 class="block__header">{$ main.fields.title | renderMarkdownCustom(["i"]) $}</h2>
+      <h2 class="block__header">{$ main.fields.title | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}</h2>
       {% endif %}
       {% if main.fields.description %}
       <div class="block__description">
@@ -24,7 +24,7 @@
             {% set image = resolved.Asset[feature.fields.primaryImage.sys.id].fields %}
 
             <uib-slide template-url="carouselslide.html" index="{$ loop.index0 $}">
-              <div class="block_slide {% if loop.index0 > 0 %}ng-cloak{% endif %}">
+              <article class="block_slide {% if loop.index0 > 0 %}ng-cloak{% endif %}">
                 <div class="block_slide__content">
                   <div class="block_slide__imageArea {% if feature.fields.roundImage %} block_slide__imageArea--rounded {% endif %}">
                     <img src="{$ _meta.imageCache $}{% if feature.fields.roundImage %}480x480/{% endif %}http:{$ image.file.url | encodeURI $}">
@@ -34,7 +34,7 @@
                   </div>
                   <div>
                     <div class="block_slide__textContent">
-                      <h2 class="block_slide__textContent__title">
+                      <h3 class="h2 block_slide__textContent__title">
                         <div>
                           {$ feature.fields.title | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
                         </div>
@@ -44,26 +44,28 @@
                         {% if feature.fields.subtitle %}
                         <div class="block_slide__textContent__title__small">{$ feature.fields.subtitle | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}</div>
                         {% endif %}
-                      </h2>
+                      </h3>
                       <div class="block_slide__textContent__body">
                         {$ feature.fields.body | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
                       </div>
                       {% if feature.fields.callToAction %}
                       <div class="block__actions">
                         {% for ctaId in feature.fields.callToAction %}
-                          {% set cta = resolved.Entry[ctaId.sys.id] %}
-                          {% if "https://player.vimeo.com" in cta.fields.url %}
-                            <span video-modal source="'{$ cta.fields.url $}'"><a href="" class="block__action">{$ cta.fields.label $}</a></span>
-                          {% else %}
-                          <a href="{$ cta.fields.url $}" class="block__action">{$ cta.fields.label $}</a>
-                          {% endif %}
+                          <div class="block__action">
+                            {% set cta = resolved.Entry[ctaId.sys.id] %}
+                            {% if "https://player.vimeo.com" in cta.fields.url %}
+                              <span video-modal source="'{$ cta.fields.url $}'"><a href="">{$ cta.fields.label $}</a></span>
+                            {% else %}
+                            <a href="{$ cta.fields.url $}">{$ cta.fields.label $}</a>
+                            {% endif %}
+                          </div>
                         {% endfor %}
                       </div>
                       {% endif %}
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             </uib-slide>
           {% endfor %}
           
@@ -72,7 +74,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <script type="text/ng-template" id="carouselslide.html">
   <div ng-class="{
