@@ -9,7 +9,7 @@
         {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
       </div>
       {% endif %}
-      <div class="block_features__list">
+      <div class="block_features__list block_features__list--{$ main.fields.maxPerRow $}">
         
         {% for featureId in main.fields.features %}
             {% set feature = resolved.Entry[featureId.sys.id] %}

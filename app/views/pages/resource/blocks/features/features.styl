@@ -80,10 +80,24 @@
   .block_features {
     &__item {
       flex 0 1 auto
-      width "calc(100% / 3 - %s)" % ($halfGutter)
       &__description {
         -webkit-line-clamp: 3;
       }
+    }
+  }
+  .block_features__list--2 {
+    article {
+      width "calc(100% / 2 - %s)" % ($halfGutter)
+    }
+  }
+  .block_features__list--3 {
+    article {
+      width "calc(100% / 3 - %s)" % ($halfGutter)
+    }
+  }
+  .block_features__list--4 {
+    article {
+      width "calc(100% / 4 - %s)" % ($halfGutter)
     }
   }
 }
