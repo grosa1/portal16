@@ -51,10 +51,15 @@
         {% include "../resource/blocks/counts/counts.nunjucks" %}
         {% include "../resource/key/composition/compositionContent.nunjucks" %}
         
-        <div class="horizontal-stripe--paddingless light-background seperator" style="width:100%;height:0px;padding-bottom:40%;position:relative;">
-            <span class="relative-anchor-offset"><a href="" id="map"></a></span>
-            <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
-                <map-widget filter="home.mapFilter" map-style="{forceSelect: 'CLASSIC'}" class="fitSize"></map-widget>
+        <div class="horizontal-stripe--paddingless white-background">
+            <div class="container--desktop">
+              <span class="relative-anchor-offset"><a href="" id="map"></a></span>
+              <h2 class="block__header">Explore the data</h2>
+            </div>
+            <div style="width:100%;height:0px;padding-bottom:40%;position:relative;" >
+              <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
+                  <map-widget filter="home.mapFilter" map-style="{forceSelect: 'CLASSIC'}" class="fitSize"></map-widget>
+              </div>
             </div>
         </div>
     </div>
