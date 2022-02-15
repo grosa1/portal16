@@ -16,11 +16,11 @@
             {% include "../../blocks/features/features.nunjucks" %}
           {% endif %}
 
-          {% if type == "carousel" %}
+          {% if type == "carouselBlock" %}
             {% include "../../blocks/carousel/carousel.nunjucks" %}
           {% endif %}
 
-          {% if type == "hero" %}
+          {% if type == "mediaBlock" %}
             {% include "../../blocks/media/media.nunjucks" %}
           {% endif %}
 

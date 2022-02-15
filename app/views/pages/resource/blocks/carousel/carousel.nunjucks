@@ -4,9 +4,9 @@
       {% if main.fields.title and not main.fields.hideTitle %}
       <h2 class="block__header">{$ main.fields.title | renderMarkdownCustom(["i"]) | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}</h2>
       {% endif %}
-      {% if main.fields.description %}
+      {% if main.fields.body %}
       <div class="block__description">
-        {$ main.fields.description | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
+        {$ main.fields.body | renderMarkdown | sanitizeTrusted(gb.locales.urlPrefix) | addPortalClasses | safe $}
       </div>
       {% endif %}
       <div>
@@ -18,7 +18,7 @@
           template-url="carouseltest.html"
           >
 
-          {% for featureId in main.fields.carouselElements %}
+          {% for featureId in main.fields.features %}
             {% set feature = resolved.Entry[featureId.sys.id] %}
             {% set featureType = resolved.Entry[featureId.sys.id].sys.contentType.sys.id %}
             {% set image = resolved.Asset[feature.fields.primaryImage.sys.id].fields %}
@@ -26,7 +26,7 @@
             <uib-slide template-url="carouselslide.html" index="{$ loop.index0 $}">
               <article class="block_slide {% if loop.index0 > 0 %}ng-cloak{% endif %}">
                 <div class="block_slide__content">
-                  <div class="block_slide__imageArea {% if feature.fields.roundImage %} block_slide__imageArea--rounded {% endif %}">
+                  <div class="block_slide__imageArea {% if feature.fields.roundImage %} block__imageArea--rounded {% endif %}">
                     <img src="{$ _meta.imageCache $}{% if feature.fields.roundImage %}480x480/{% endif %}http:{$ image.file.url | encodeURI $}">
                     <div class="block_slide__imageArea__caption">
                       {$ image.description | sanitizeTrusted(gb.locales.urlPrefix) | safe $}
