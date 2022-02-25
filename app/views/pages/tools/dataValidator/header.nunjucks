@@ -18,7 +18,7 @@
                 </p>
                 <p ng-class="{'m-t-1': (vm.$state.is('dataValidator') || vm.$state.is('dataValidatorAbout') )}"><span translate="validation.thisIsAnEarlyAccessVersion"></span> <a href="#" ng-click="vm.toggleFeedback()" translate="validation.here"></a>
                 <br/> 
-                <span translate="validation.needCSVvalidationUseOldValidator"></span> <a ui-sref="dataValidatorLegacy()" translate="validation.here"></a>
+                <span translate="validation.needCSVvalidationUseOldValidator"></span> <a ui-sref="dataValidatorLegacy()" translate="validation.hereLegacy"></a>
                 
                 </p>
             </header>
