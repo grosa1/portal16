@@ -78,7 +78,7 @@ let config = {
         analyticsImg: analyticsImg || `www.gbif${localEnvironmentPostFix}.org/sites/default/files/gbif_analytics/`,
         // domain: 'http://www.gbif.org:7000',
         domain: 'http://localhost:3000',
-        topDomain: 'localhost:3000',
+        topDomain: `gbif${localEnvironmentPostFix}.org`,
         // notice the mock credentials will not work and shouldn't.
         // We still have private endpoints (such as the directory) this is unfortunate as it means outside users can only develop on a small part of the site.
         credentials: credentials || (rootPath + '/config/mockCredentials.json'),
@@ -130,7 +130,7 @@ let config = {
         verification: verification || '/var/lib/human-verification/images',
         contentfulApi: contentfulApi || 'https://cdn.contentful.com/',
         contentfulPreviewApi: contentfulPreviewApi || 'https://preview.contentful.com/',
-        elasticContentful: elasticContentful || 'http://cms-search.gbif.org:9200/',
+        elasticContentful: elasticContentful || 'http://cms-search.gbif-dev.org:9200/',
         registry: registry || 'https://registry.gbif-dev.org',
         oozie: oozie || '//c3master1-vh.gbif.org:11000/oozie/v2/',
         yarnResourceManager: yarnResourceManager || '//c3master2-vh.gbif.org:8088/ws/v1/',

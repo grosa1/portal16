@@ -42,6 +42,7 @@
       "CLASSIC": "تقليدي",
       "FIRE": "النار",
       "GLACIER": "نهر جليدي",
+      "GREEN_POINT": "أخضر",
       "PURPLE_YELLOW": "أرجواني أصفر",
       "PURPLE_HEAT": "حرارة أرجوانية",
       "BLUE_HEAT": "حرارة زرقاء",
@@ -49,6 +50,15 @@
       "GREEN": "أخضر",
       "BLUE_CLUSTER": "مجموعة زرقاء",
       "ORANGE_CLUSTER": "مجموعة برتقالية"
+    },
+    "tooltips": {
+      "toggleStyle": "",
+      "searchArea": "",
+      "addRectangleFilter": "",
+      "addPolygonFilter": "",
+      "removeGeometryFilter": "",
+      "zoomIn": "",
+      "zoomOut": ""
     },
     "errors": {
       "413": "الملف الهندسي كبير جدا على أن تتم معالجته بواسطة واجهة برمجة تطبيق البيانات."

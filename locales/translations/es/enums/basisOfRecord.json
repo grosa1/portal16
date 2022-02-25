@@ -7,8 +7,10 @@
     "HUMAN_OBSERVATION": "Observación humana",
     "MACHINE_OBSERVATION": "Observación con máquina",
     "MATERIAL_SAMPLE": "Muestra de material",
+    "MATERIAL_CITATION": "",
     "LITERATURE": "Literatura",
     "UNKNOWN": "Desconocida",
+    "OCCURRENCE": "Registro biológico",
     "undefined": "Desconocida"
   }
 }

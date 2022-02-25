@@ -42,6 +42,7 @@
       "CLASSIC": "Classique",
       "FIRE": "Feu",
       "GLACIER": "Glacier",
+      "GREEN_POINT": "Vert",
       "PURPLE_YELLOW": "Violet jaune",
       "PURPLE_HEAT": "Violet chaud",
       "BLUE_HEAT": "Bleu chaud",
@@ -49,6 +50,15 @@
       "GREEN": "Vert",
       "BLUE_CLUSTER": "Groupe bleu",
       "ORANGE_CLUSTER": "Groupe orange"
+    },
+    "tooltips": {
+      "toggleStyle": "",
+      "searchArea": "",
+      "addRectangleFilter": "",
+      "addPolygonFilter": "",
+      "removeGeometryFilter": "",
+      "zoomIn": "",
+      "zoomOut": ""
     },
     "errors": {
       "413": "Le fichier de géométrie est trop volumineux pour être traités par les données API."

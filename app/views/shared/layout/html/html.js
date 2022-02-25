@@ -151,9 +151,17 @@ function runBlock( $translate, $http, $cookies, LOCALE, $rootScope, $location, $
 // }
 
 /** @ngInject */
-function configBlock($localStorageProvider, $sessionStorageProvider, toastrConfig, $compileProvider) {
+function configBlock($sceDelegateProvider, $localStorageProvider, $sessionStorageProvider, toastrConfig, $compileProvider) {
     $localStorageProvider.setKeyPrefix('gbif.');
     $sessionStorageProvider.setKeyPrefix('gbif.');
+    
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain. **.
+      'https://player.vimeo.com/**'
+    ]);
+    
     // localStorageServiceProvider
     //     .setPrefix('gbif')
     //     .setStorageType('localStorage')
@@ -351,6 +359,7 @@ require('../../../pages/installation/key/installationKey.ctrl');
 require('../../../pages/network/key/networkKey.ctrl');
 
 require('../../../components/gbHelp/gbHelp.directive');
+require('../../../components/videoModal/videoModal.directive');
 require('../../../pages/tools/speciesLookup/droppable.directive');
 
 
@@ -400,8 +409,6 @@ require('../../../pages/grscicoll/collection/collection.ctrl');
 require('../../../pages/grscicoll/collection/key/collectionKey.ctrl');
 require('../../../pages/grscicoll/institution/institution.ctrl');
 require('../../../pages/grscicoll/institution/key/institutionKey.ctrl');
-require('../../../pages/grscicoll/person/person.ctrl');
-require('../../../pages/grscicoll/person/key/personKey.ctrl');
 
 require('../../../pages/custom/contactUs/contactUs.ctrl');
 require('../../../pages/custom/contactUs/directory/contactDirectory.ctrl');

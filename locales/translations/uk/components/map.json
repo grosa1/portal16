@@ -42,6 +42,7 @@
       "CLASSIC": "Класичні",
       "FIRE": "Полум'яні",
       "GLACIER": "Крижані",
+      "GREEN_POINT": "Зелені",
       "PURPLE_YELLOW": "Пурпурово-жовті",
       "PURPLE_HEAT": "Пурпуровогарячі",
       "BLUE_HEAT": "Відтінки синього",
@@ -49,6 +50,15 @@
       "GREEN": "Зелені",
       "BLUE_CLUSTER": "Сині скупчення",
       "ORANGE_CLUSTER": "Помаранчеві скупчення"
+    },
+    "tooltips": {
+      "toggleStyle": "",
+      "searchArea": "",
+      "addRectangleFilter": "",
+      "addPolygonFilter": "",
+      "removeGeometryFilter": "",
+      "zoomIn": "",
+      "zoomOut": ""
     },
     "errors": {
       "413": "Файл геометрії занадто великий для обробки даних через API."

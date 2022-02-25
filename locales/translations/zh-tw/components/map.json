@@ -42,6 +42,7 @@
       "CLASSIC": "經典樣式",
       "FIRE": "火色",
       "GLACIER": "冰河",
+      "GREEN_POINT": "綠色",
       "PURPLE_YELLOW": "紫色 黃色",
       "PURPLE_HEAT": "紫色熱圖",
       "BLUE_HEAT": "藍色熱圖",
@@ -49,6 +50,15 @@
       "GREEN": "綠色",
       "BLUE_CLUSTER": "藍色集群",
       "ORANGE_CLUSTER": "橙色集群"
+    },
+    "tooltips": {
+      "toggleStyle": "",
+      "searchArea": "",
+      "addRectangleFilter": "",
+      "addPolygonFilter": "",
+      "removeGeometryFilter": "",
+      "zoomIn": "",
+      "zoomOut": ""
     },
     "errors": {
       "413": "此幾何檔案過大，資料 API 無法處理。"
