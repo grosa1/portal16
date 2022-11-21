@@ -12,12 +12,20 @@ module.exports = function(app) {
 };
 
 router.get('/download/request', function(req, res, next) {
-  let source = req.get('Referrer') || req.get('gbif-download-source') || _.get(req, 'query.source');
+  let source = req.get('gbif-download-source') || _.get(req, 'query.source');
+  const referrer = req.get('Referrer');
+  if (referrer) {
+    const referrerUrl = new URL(referrer);
+    // if source name undefined, then overwrite with referrer hostname
+    source = source ?? referrerUrl.hostname;
+  }
+
   return res.json({
     referrer: req.get('Referrer'),
     gbifDownloadHeader: req.get('gbif-download-source'),
     sourceParam: _.get(req, 'query.source'),
-    origin: req.get('origin')
+    origin: req.get('origin'),
+    source: source,
   });
   if (source) {
     res.cookie('downloadSource', source,
