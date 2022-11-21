@@ -13,6 +13,12 @@ module.exports = function(app) {
 
 router.get('/download/request', function(req, res, next) {
   let source = req.get('Referrer') || req.get('gbif-download-source') || _.get(req, 'query.source');
+  return res.json({
+    referrer: req.get('Referrer'),
+    gbifDownloadHeader: req.get('gbif-download-source'),
+    sourceParam: _.get(req, 'query.source'),
+    origin: req.get('origin')
+  });
   if (source) {
     res.cookie('downloadSource', source,
       {
